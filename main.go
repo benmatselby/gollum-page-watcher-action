@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
+	"os"
 )
 
 func main() {
-	fmt.Println(Getenv("GITHUB_EVENT_PATH"))
+	fmt.Println(os.Getenv("GITHUB_EVENT_PATH"))
 }
