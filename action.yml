@@ -5,7 +5,7 @@ runs:
   using: "docker"
   image: "Dockerfile"
 branding:
-  icon: "target"
+  icon: "book-open"
   color: "purple"
 inputs:
   watch_pages:
