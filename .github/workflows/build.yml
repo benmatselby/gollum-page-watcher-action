@@ -1,0 +1,44 @@
+name: Go
+on: [push]
+jobs:
+  build:
+    strategy:
+      matrix:
+        go-version: [1.14.x]
+    runs-on: ubuntu-latest
+    name: Build
+    env:
+      GOPATH: /home/runner/go
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v1
+        with:
+          go-version: ${{ matrix.go-version }}
+        id: go
+
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v1
+
+      - name: Get dependencies
+        run: |
+          PATH=$(go env GOPATH)/bin:$PATH
+          go get github.com/golang/mock/mockgen
+          make install
+
+      - name: Vet
+        run: |
+          make vet
+
+      - name: Build
+        run: |
+          make build
+
+      - name: Test
+        run: |
+          make test
+
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

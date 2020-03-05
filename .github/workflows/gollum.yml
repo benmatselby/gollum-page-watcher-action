@@ -1,0 +1,13 @@
+name: "wiki-watcher"
+on: [gollum, push]
+
+jobs:
+  watch:
+    name: "Watcher"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+
+      - name: Watch for wiki page changes
+        uses: ./

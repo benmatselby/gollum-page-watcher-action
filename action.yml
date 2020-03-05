@@ -1,0 +1,13 @@
+name: "Gollum Page Watcher"
+author: "benmatselby"
+description: "📦 A GitHub Action to watch for certain pages to change in the wiki, and then notify in a Slack channel"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+branding:
+  icon: "target"
+  color: "purple"
+inputs:
+  watch_pages:
+    description: "The pages we should be watching for changes to."
+    required: true
