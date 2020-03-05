@@ -19,10 +19,6 @@ This GitHub action will watch for certain pages to change in the wiki, and then 
 - name: Wiki Watcher
   uses: benmatselby/gollum-page-watcher-action@master
   env:
-    WATCH_PAGES: 0.57.2
-    TARGET_REPO: benmatselby/benmatselby.github.io
-    TOKEN: ${{ secrets.TOKEN }}
-    HUGO_ARGS: '-t academic'
-    CNAME: benmatselby.github.io
+    WATCH_PAGES:
 ...
 ```
