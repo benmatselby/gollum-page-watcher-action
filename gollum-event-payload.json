@@ -1,0 +1,18 @@
+{
+  "pages": [
+    {
+      "page_name": "Home",
+      "title": "The homepage",
+      "action": "edited",
+      "sha": "32j3n3j2n4234",
+      "html_url": "https://github.com/benmatselby/gollum-page-watcher-action/wiki/Home"
+    },
+    {
+      "page_name": "Testing",
+      "title": "How to test",
+      "action": "created",
+      "sha": "3242345235",
+      "html_url": "https://github.com/benmatselby/gollum-page-watcher-action/wiki/Testing"
+    }
+  ]
+}
