@@ -20,7 +20,7 @@ This GitHub action will watch for certain pages to change in the wiki, and then 
 - name: Wiki Watcher
   uses: benmatselby/gollum-page-watcher-action@v1.0.0
   env:
-    SLACK_WEBHOOK: https://hooks.slack.com/services/etc/etc
+    SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
     SLACK_CHANNEL: #random
     SLACK_USERNAME: Gollum
 ...
