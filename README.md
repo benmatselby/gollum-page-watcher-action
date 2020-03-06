@@ -26,6 +26,10 @@ This GitHub action will watch for certain pages to change in the wiki, and then 
 ...
 ```
 
+This will result in
+
+![Output](./img/output.png)
+
 ## Testing
 
 To test this, you can run it from your command line with the following setup

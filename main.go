@@ -18,9 +18,16 @@ type Page struct {
 	URL    string `json:"html_url"`
 }
 
+// Sender represents the author of the commit
+type Sender struct {
+	Login     string `json:"login"`
+	AvatarURL string `json:"avatar_url"`
+}
+
 // GollumEvent houses all of the Page structs. For more detail see https://developer.github.com/v3/activity/events/types/#gollumevent
 type GollumEvent struct {
-	Pages []Page `json:"pages"`
+	Pages  []Page `json:"pages"`
+	Sender Sender `json:"sender"`
 }
 
 // main is the handler for the action
@@ -32,13 +39,13 @@ func main() {
 		os.Exit(1)
 	}
 
-	pages, err := GetPagesChanged()
+	event, err := GetGollumEvent()
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
 
-	err = SendSlackMessage(pages)
+	err = SendSlackMessage(event)
 	if err != nil {
 		fmt.Println(msg)
 		os.Exit(1)
@@ -62,9 +69,8 @@ func ValidateConfiguration() (bool, string) {
 	return true, ""
 }
 
-// GetPagesChanged will use the configuration to determine if any of the "watched" pages
-// have been edited or created
-func GetPagesChanged() ([]Page, error) {
+// GetGollumEvent will unmarshal the JSON we receive from GitHub
+func GetGollumEvent() (*GollumEvent, error) {
 	file, err := ioutil.ReadFile(os.Getenv("GITHUB_EVENT_PATH"))
 	if err != nil {
 		return nil, fmt.Errorf("Unable to read the file defined GITHUB_EVENT_PATH, cannot carry on")
@@ -75,18 +81,22 @@ func GetPagesChanged() ([]Page, error) {
 		return nil, fmt.Errorf("Unable to understand the JSON defined in GITHUB_EVENT_PATH, cannot carry on")
 	}
 
-	return gollum.Pages, nil
+	return &gollum, nil
 }
 
 // SendSlackMessage will send the required message to Slack.
-func SendSlackMessage(pages []Page) error {
-	attachments := []slack.Attachment{}
-	for _, page := range pages {
-		attachments = append(attachments, slack.Attachment{
-			Color: "#2e5685",
-			Text:  fmt.Sprintf("<%s|%s>", page.URL, page.Title),
-		})
+func SendSlackMessage(event *GollumEvent) error {
+	content := ""
+	for _, page := range event.Pages {
+		content += fmt.Sprintf("<%s|%s>\n", page.URL, page.Title)
 	}
+
+	attachments := []slack.Attachment{slack.Attachment{
+		Color:      "#2e5685",
+		Text:       content,
+		AuthorName: event.Sender.Login,
+		AuthorIcon: event.Sender.AvatarURL,
+	}}
 
 	msg := &slack.WebhookMessage{
 		Text:        "The following pages have changed in the wiki",
