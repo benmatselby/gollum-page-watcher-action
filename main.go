@@ -32,9 +32,13 @@ func main() {
 		os.Exit(1)
 	}
 
-	pages := GetPagesChanged()
+	pages, err := GetPagesChanged()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 
-	err := SendSlackMessage(pages)
+	err = SendSlackMessage(pages)
 	if err != nil {
 		fmt.Println(msg)
 		os.Exit(1)
@@ -60,20 +64,18 @@ func ValidateConfiguration() (bool, string) {
 
 // GetPagesChanged will use the configuration to determine if any of the "watched" pages
 // have been edited or created
-func GetPagesChanged() []Page {
+func GetPagesChanged() ([]Page, error) {
 	file, err := ioutil.ReadFile(os.Getenv("GITHUB_EVENT_PATH"))
 	if err != nil {
-		fmt.Println("Unable to read the file defined GITHUB_EVENT_PATH, cannot carry on")
-		os.Exit(1)
+		return nil, fmt.Errorf("Unable to read the file defined GITHUB_EVENT_PATH, cannot carry on")
 	}
 
 	var gollum GollumEvent
 	if err := json.Unmarshal([]byte(file), &gollum); err != nil {
-		fmt.Println("Unable to understand the JSON defined in GITHUB_EVENT_PATH, cannot carry on")
-		os.Exit(1)
+		return nil, fmt.Errorf("Unable to understand the JSON defined in GITHUB_EVENT_PATH, cannot carry on")
 	}
 
-	return gollum.Pages
+	return gollum.Pages, nil
 }
 
 // SendSlackMessage will send the required message to Slack.
