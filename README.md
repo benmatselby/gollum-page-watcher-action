@@ -6,11 +6,12 @@ This GitHub action will watch for certain pages to change in the wiki, and then 
 
 ## Secrets
 
-- `SLACK_WEBHOOK`: The webhook to use to send the Slack notification.
+- `SLACK_WEBHOOK`: The Slack Webhook URL required to post a message to your workspace.
 
 ## Environment Variables
 
-- `WATCH_PAGES`: The pages we should "watch" for changes to.
+- `SLACK_USERNAME`: The Slack username if you want to define it, otherwise it will be what you have defined in Slack.
+- `SLACK_CHANNEL`: The Slack channel if you want to define it, otherwise it will be what you have defined in Slack.
 
 ## Example
 
@@ -19,7 +20,6 @@ This GitHub action will watch for certain pages to change in the wiki, and then 
 - name: Wiki Watcher
   uses: benmatselby/gollum-page-watcher-action@master
   env:
-    WATCH_PAGES:
     SLACK_WEBHOOK: https://hooks.slack.com/services/etc/etc
     SLACK_CHANNEL: #random
     SLACK_USERNAME: Gollum
