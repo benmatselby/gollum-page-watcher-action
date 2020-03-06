@@ -8,9 +8,6 @@ branding:
   icon: "book-open"
   color: "purple"
 inputs:
-  watch_pages:
-    description: "The pages we should be watching for changes to. A comma separated list of string expressions."
-    required: true
   slack_webhook:
     description: "The Slack Webhook URL required to post a message to your workspace."
     required: true
