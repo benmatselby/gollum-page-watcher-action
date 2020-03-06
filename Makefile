@@ -25,7 +25,8 @@ build: ## Build the application
 
 .PHONY: test
 test: ## Run the unit tests
-	go test ./...
+	go test ./... -coverprofile=coverage.out
+	go tool cover -func=coverage.out
 
 .PHONY: all ## Run everything
 all: install vet lint build test
