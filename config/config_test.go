@@ -1,11 +1,10 @@
-package main
+package config
 
 import (
-	"os"
 	"testing"
 )
 
-func TestValidateConfiguration(t *testing.T) {
+func TestIsValid(t *testing.T) {
 	tt := []struct {
 		name         string
 		eventName    string
@@ -23,12 +22,12 @@ func TestValidateConfiguration(t *testing.T) {
 
 	for _, tc := range tt {
 		t.Run(tc.name, func(t *testing.T) {
-
-			os.Setenv("GITHUB_EVENT_NAME", tc.eventName)
-			os.Setenv("GITHUB_EVENT_PATH", tc.eventPath)
-			os.Setenv("SLACK_WEBHOOK", tc.slackWebhook)
-
-			ok, msg := ValidateConfiguration()
+			c := Config{
+				GitHubEventName: tc.eventName,
+				GitHubEventPath: tc.eventPath,
+				SlackWebhook:    tc.slackWebhook,
+			}
+			ok, msg := c.IsValid()
 
 			if ok != tc.expectedBool {
 				t.Fatalf("expected return boolean to be '%v'; got '%v'", tc.expectedBool, ok)

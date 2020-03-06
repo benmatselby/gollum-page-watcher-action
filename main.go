@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"os"
 
+	"github.com/benmatselby/gollum-page-watcher-action/config"
 	"github.com/benmatselby/gollum-page-watcher-action/github"
 	"github.com/benmatselby/gollum-page-watcher-action/notifier"
 )
@@ -13,46 +14,38 @@ import (
 // main is the handler for the action
 // Environment variables used are defined here: https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables#default-environment-variables
 func main() {
-	ok, msg := ValidateConfiguration()
+	config := config.Config{
+		GitHubEventName: os.Getenv("GITHUB_EVENT_NAME"),
+		GitHubEventPath: os.Getenv("GITHUB_EVENT_PATH"),
+		SlackWebhook:    os.Getenv("SLACK_WEBHOOK"),
+		SlackUsername:   os.Getenv("SLACK_USERNAME"),
+		SlackChannel:    os.Getenv("SLACK_CHANNEL"),
+		Debug:           os.Getenv("DEBUG"),
+	}
+
+	ok, msg := config.IsValid()
 	if !ok {
 		fmt.Println(msg)
 		os.Exit(1)
 	}
 
-	event, err := GetGollumEvent()
+	event, err := GetGollumEvent(config)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
 
 	commsStrategy := notifier.Notifier{Strategy: &notifier.Slack{}}
-	err = commsStrategy.Strategy.Send(event)
+	err = commsStrategy.Strategy.Send(config, event)
 	if err != nil {
 		fmt.Println(msg)
 		os.Exit(1)
 	}
 }
 
-// ValidateConfiguration will validate all of the environment variables required to run the action
-func ValidateConfiguration() (bool, string) {
-	if os.Getenv("GITHUB_EVENT_NAME") != "gollum" {
-		return false, "GITHUB_EVENT_NAME is not a 'gollum' event, so nothing to do."
-	}
-
-	if os.Getenv("GITHUB_EVENT_PATH") == "" {
-		return false, "There is no GITHUB_EVENT_PATH defined, cannot carry on."
-	}
-
-	if os.Getenv("SLACK_WEBHOOK") == "" {
-		return false, "There is no SLACK_WEBHOOK defined, therefore we could not post a message to slack."
-	}
-
-	return true, ""
-}
-
 // GetGollumEvent will unmarshal the JSON we receive from GitHub
-func GetGollumEvent() (*github.GollumEvent, error) {
-	file, err := ioutil.ReadFile(os.Getenv("GITHUB_EVENT_PATH"))
+func GetGollumEvent(config config.Config) (*github.GollumEvent, error) {
+	file, err := ioutil.ReadFile(config.GitHubEventPath)
 	if err != nil {
 		return nil, fmt.Errorf("Unable to read the file defined GITHUB_EVENT_PATH, cannot carry on")
 	}
