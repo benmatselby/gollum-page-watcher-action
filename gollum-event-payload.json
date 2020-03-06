@@ -14,5 +14,25 @@
       "sha": "3242345235",
       "html_url": "https://github.com/benmatselby/gollum-page-watcher-action/wiki/Testing"
     }
-  ]
+  ],
+  "sender": {
+    "login": "benmatselby",
+    "id": 9831992,
+    "node_id": "MDQ6VXNlcjk4MzE5OTI=",
+    "avatar_url": "https://avatars2.githubusercontent.com/u/178634?s=60&v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/rachmari",
+    "html_url": "https://github.com/rachmari",
+    "followers_url": "https://api.github.com/users/rachmari/followers",
+    "following_url": "https://api.github.com/users/rachmari/following{/other_user}",
+    "gists_url": "https://api.github.com/users/rachmari/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/rachmari/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/rachmari/subscriptions",
+    "organizations_url": "https://api.github.com/users/rachmari/orgs",
+    "repos_url": "https://api.github.com/users/rachmari/repos",
+    "events_url": "https://api.github.com/users/rachmari/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/rachmari/received_events",
+    "type": "User",
+    "site_admin": true
+  }
 }
