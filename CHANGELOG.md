@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## next
+
+- Package refactor to make it easier to build new "notifiers"
+
 ## 1.1.0
 
 - Show which GitHub user has made the change to the wiki.
