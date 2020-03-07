@@ -19,7 +19,7 @@ func (s *Slack) Send(config config.Config, event *github.GollumEvent) error {
 		content += fmt.Sprintf("<%s|%s>\n", page.URL, page.Title)
 	}
 
-	attachments := []slack.Attachment{slack.Attachment{
+	attachments := []slack.Attachment{{
 		Color:      "#2e5685",
 		Text:       content,
 		AuthorName: event.Sender.Login,
