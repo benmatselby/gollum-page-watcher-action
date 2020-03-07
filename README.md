@@ -1,6 +1,6 @@
 # Gollum Page Watcher GitHub Action
 
-<a href="https://github.com/benmatselby/gollum-page-watcher-action/actions"><img alt="status" src="https://github.com/benmatselby/gollum-page-watcher-action/workflows/Go/badge.svg"></a>
+<a href="https://github.com/benmatselby/gollum-page-watcher-action/actions"><img alt="status" src="https://github.com/benmatselby/gollum-page-watcher-action/workflows/Go/badge.svg"></a> [![Go Report Card](https://goreportcard.com/badge/github.com/benmatselby/gollum-page-watcher-action)](https://goreportcard.com/report/github.com/benmatselby/gollum-page-watcher-action)
 
 This GitHub action will watch for certain pages to change in the wiki, and then notify in a Slack channel.
 
