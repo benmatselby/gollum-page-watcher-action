@@ -2,7 +2,7 @@
 
 <a href="https://github.com/benmatselby/gollum-page-watcher-action/actions"><img alt="status" src="https://github.com/benmatselby/gollum-page-watcher-action/workflows/Go/badge.svg"></a> [![Go Report Card](https://goreportcard.com/badge/github.com/benmatselby/gollum-page-watcher-action)](https://goreportcard.com/report/github.com/benmatselby/gollum-page-watcher-action)
 
-This GitHub action will watch for certain pages to change in the wiki, and then notify in a Slack channel.
+A GitHub Action to watch for GitHub Wiki Page changes, and then notify a Slack channel
 
 ## Secrets
 

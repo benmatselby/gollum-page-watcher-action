@@ -1,6 +1,6 @@
 name: "Gollum Page Watcher"
 author: "benmatselby"
-description: "📦 A GitHub Action to watch for certain pages to change in the wiki, and then notify in a Slack channel"
+description: "📦 A GitHub Action to watch for GitHub Wiki Page changes, and then notify a Slack channel"
 runs:
   using: "docker"
   image: "Dockerfile"
