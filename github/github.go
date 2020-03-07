@@ -1,5 +1,13 @@
 package github
 
+import (
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+
+	"github.com/benmatselby/gollum-page-watcher-action/config"
+)
+
 // Page defines the struct of each page that has changed during the action. For more detail see https://developer.github.com/v3/activity/events/types/#gollumevent
 type Page struct {
 	Name   string `json:"page_name"`
@@ -19,4 +27,19 @@ type Sender struct {
 type GollumEvent struct {
 	Pages  []Page `json:"pages"`
 	Sender Sender `json:"sender"`
+}
+
+// GetGollumEvent will unmarshal the JSON we receive from GitHub
+func GetGollumEvent(config config.Config) (*GollumEvent, error) {
+	file, err := ioutil.ReadFile(config.GitHubEventPath)
+	if err != nil {
+		return nil, fmt.Errorf("Unable to read the file defined GITHUB_EVENT_PATH, cannot carry on")
+	}
+
+	var gollum GollumEvent
+	if err := json.Unmarshal([]byte(file), &gollum); err != nil {
+		return nil, fmt.Errorf("Unable to understand the JSON defined in GITHUB_EVENT_PATH, cannot carry on")
+	}
+
+	return &gollum, nil
 }
