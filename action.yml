@@ -17,3 +17,6 @@ inputs:
   slack_channel:
     description: "The Slack channel if you want to define it, otherwise it will be what you have defined in Slack."
     required: false
+  pages_to_watch:
+    description: "A regex of page titles you want to watch, in order to get a notification. If not defined, all pages are watched."
+    required: false

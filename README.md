@@ -12,6 +12,7 @@ A GitHub Action to watch for GitHub Wiki Page changes, and then notify a Slack c
 
 - `SLACK_USERNAME`: The Slack username if you want to define it, otherwise it will be what you have defined in Slack.
 - `SLACK_CHANNEL`: The Slack channel if you want to define it, otherwise it will be what you have defined in Slack.
+- `PAGES_TO_WATCH`: A regex of page titles you want to watch, in order to get a notification. If not defined, all pages are watched.
 
 ## Example
 
@@ -23,10 +24,11 @@ A GitHub Action to watch for GitHub Wiki Page changes, and then notify a Slack c
     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
     SLACK_CHANNEL: #random
     SLACK_USERNAME: Gollum
+    PAGES_TO_WATCH: (^Home$)|(^Meeting minutes)
 ...
 ```
 
-This will result in
+This will result in a match on "Home", and all pages with a title starting with "Meeting minutes".
 
 ![Output](./img/output.png)
 
