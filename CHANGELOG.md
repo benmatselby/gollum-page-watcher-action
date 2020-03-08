@@ -1,8 +1,11 @@
 # CHANGELOG
 
-## next
+## next
+
+## 1.2.0
 
 - Package refactor to make it easier to build new "notifiers"
+- Provide new variable `PAGES_TO_WATCH` that allows users to define a regex of page titles to watch and be notified when changed.
 
 ## 1.1.0
 
