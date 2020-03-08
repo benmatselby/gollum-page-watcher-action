@@ -18,6 +18,7 @@ func main() {
 		SlackWebhook:    os.Getenv("SLACK_WEBHOOK"),
 		SlackUsername:   os.Getenv("SLACK_USERNAME"),
 		SlackChannel:    os.Getenv("SLACK_CHANNEL"),
+		PagesToWatch:    os.Getenv("PAGES_TO_WATCH"),
 		Debug:           os.Getenv("DEBUG"),
 	}
 
@@ -31,6 +32,11 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
+	}
+
+	if len(event.Pages) == 0 {
+		fmt.Println("No pages being watched have been changed.")
+		os.Exit(0)
 	}
 
 	commsStrategy := notifier.Notifier{Strategy: &notifier.Slack{}}

@@ -18,6 +18,10 @@ type Config struct {
 	// SlackChannel is the destination of the Slack message
 	SlackChannel string
 
+	// PagesToWatch defines which page titles to watch. If not specified, all
+	// pages will be watched, and notified on.
+	PagesToWatch string
+
 	// Debug defines if we are running in debug mode
 	Debug string
 }

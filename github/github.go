@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"regexp"
 
 	"github.com/benmatselby/gollum-page-watcher-action/config"
 )
@@ -40,6 +41,16 @@ func GetGollumEvent(config config.Config) (*GollumEvent, error) {
 	if err := json.Unmarshal([]byte(file), &gollum); err != nil {
 		return nil, fmt.Errorf("Unable to understand the JSON defined in GITHUB_EVENT_PATH, cannot carry on")
 	}
+
+	var watching = regexp.MustCompile(config.PagesToWatch)
+	var pages []Page
+	for _, page := range gollum.Pages {
+		if watching.MatchString(page.Title) {
+			pages = append(pages, page)
+		}
+	}
+
+	gollum.Pages = pages
 
 	return &gollum, nil
 }

@@ -13,6 +13,13 @@
       "action": "created",
       "sha": "3242345235",
       "html_url": "https://github.com/benmatselby/gollum-page-watcher-action/wiki/Testing"
+    },
+    {
+      "page_name": "Testing actions",
+      "title": "How to test actions",
+      "action": "edited",
+      "sha": "3242345238",
+      "html_url": "https://github.com/benmatselby/gollum-page-watcher-action/wiki/Testing-actions"
     }
   ],
   "sender": {
