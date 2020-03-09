@@ -2,6 +2,10 @@
 
 ## next
 
+## 1.3.0
+
+- [Resolves #16](https://github.com/benmatselby/gollum-page-watcher-action/issues/16) - Updated Slack output, to explain which repo the wiki has changed in.
+
 ## 1.2.0
 
 - Package refactor to make it easier to build new "notifiers"
