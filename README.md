@@ -39,7 +39,7 @@ To test this, you can run it from your command line with the following setup
 ```shell
 GITHUB_EVENT_PATH=example-payloads/valid-payload.json \
 GITHUB_EVENT_NAME=gollum \
-SLACK_WEBHOOK=[your-slack-webook-url] \
+SLACK_WEBHOOK=[your-slack-webhook-url] \
 SLACK_CHANNEL=[your-slack-channel] \
 DEBUG=true \
 go run main.go
