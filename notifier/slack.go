@@ -14,9 +14,9 @@ type Slack struct{}
 
 // Send communicates a message to the Slack API
 func (s *Slack) Send(config config.Config, event *github.GollumEvent) error {
-	content := ""
+	content := "The following pages have changed in the wiki:\n"
 	for _, page := range event.Pages {
-		content += fmt.Sprintf("<%s|%s>\n", page.URL, page.Title)
+		content += fmt.Sprintf("\t- <%s|%s>\n", page.URL, page.Title)
 	}
 
 	attachments := []slack.Attachment{{
@@ -24,11 +24,10 @@ func (s *Slack) Send(config config.Config, event *github.GollumEvent) error {
 		Text:       content,
 		AuthorName: event.Sender.Login,
 		AuthorIcon: event.Sender.AvatarURL,
+		Footer: fmt.Sprintf("<%s|%s>", event.Repo.URL, event.Repo.FullName),
 	}}
 
-	text := fmt.Sprintf("The following pages have changed in the <%s|%s> wiki\n", event.Repo.URL, event.Repo.FullName)
 	msg := &slack.WebhookMessage{
-		Text:        text,
 		Attachments: attachments,
 	}
 
