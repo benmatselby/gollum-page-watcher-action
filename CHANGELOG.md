@@ -2,6 +2,10 @@
 
 ## next
 
+## 1.4.0
+
+- [Feature #19](https://github.com/benmatselby/gollum-page-watcher-action/pull/19) - Update the slack message to be similar to other application output in Slack. Thanks to [@markgaze](https://github.com/markgaze) for the contribution.
+
 ## 1.3.0
 
 - [Resolves #16](https://github.com/benmatselby/gollum-page-watcher-action/issues/16) - Updated Slack output, to explain which repo the wiki has changed in.
