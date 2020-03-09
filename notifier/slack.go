@@ -26,8 +26,9 @@ func (s *Slack) Send(config config.Config, event *github.GollumEvent) error {
 		AuthorIcon: event.Sender.AvatarURL,
 	}}
 
+	text := fmt.Sprintf("The following pages have changed in the <%s|%s> wiki\n", event.Repo.URL, event.Repo.FullName)
 	msg := &slack.WebhookMessage{
-		Text:        "The following pages have changed in the wiki",
+		Text:        text,
 		Attachments: attachments,
 	}
 

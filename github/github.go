@@ -24,10 +24,17 @@ type Sender struct {
 	AvatarURL string `json:"avatar_url"`
 }
 
+// Repo represents the repo the wiki is linked to
+type Repo struct {
+	FullName string `json:"full_name"`
+	URL      string `json:"html_url"`
+}
+
 // GollumEvent houses all of the Page structs. For more detail see https://developer.github.com/v3/activity/events/types/#gollumevent
 type GollumEvent struct {
 	Pages  []Page `json:"pages"`
 	Sender Sender `json:"sender"`
+	Repo   Repo   `json:"repository"`
 }
 
 // GetGollumEvent will unmarshal the JSON we receive from GitHub
