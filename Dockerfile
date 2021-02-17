@@ -1,7 +1,7 @@
-FROM golang:1.14-alpine
+FROM golang:1.16-alpine
 LABEL maintainer="Ben Selby <benmatselby@gmail.com>"
 
-RUN	apk add --no-cache \
+RUN apk add --no-cache \
 	bash \
 	ca-certificates \
 	curl \

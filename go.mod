@@ -1,6 +1,6 @@
 module github.com/benmatselby/gollum-page-watcher-action
 
-go 1.14
+go 1.16
 
 require (
 	github.com/gorilla/websocket v1.4.1 // indirect
