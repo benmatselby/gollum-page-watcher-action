@@ -2,6 +2,8 @@
 
 ## next
 
+## 1.5.0
+
 - Bumped docker image to Go 1.16 runtime.
 - Bump the build environment to test on 1.16.
 - Bumped `github.com/slack-go/slack` from 0.6.2 to 0.8.1.
