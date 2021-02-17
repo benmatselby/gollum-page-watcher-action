@@ -9,6 +9,7 @@ explain:
 
 .PHONY: install
 install: ## Install the local dependencies
+	go install github.com/golang/mock/mockgen@master
 	go get ./...
 
 .PHONY: vet

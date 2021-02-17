@@ -1,8 +1,11 @@
 # CHANGELOG
 
-## next
+## next
 
-## 1.4.0
+- Bumped docker image to Go 1.16 runtime.
+- Bump the build environment to test on 1.16.
+
+## 1.4.0
 
 - [Feature #19](https://github.com/benmatselby/gollum-page-watcher-action/pull/19) - Update the slack message to be similar to other application output in Slack. Thanks to [@markgaze](https://github.com/markgaze) for the contribution.
 
