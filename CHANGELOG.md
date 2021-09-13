@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## next
+## 1.6.0
 
 - Bumped docker image to Go 1.17 runtime.
 
