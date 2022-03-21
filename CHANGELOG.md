@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.7.0
+
+- Bumped docker image to Go 1.18 runtime.
+
 ## 1.6.0
 
 - Bumped docker image to Go 1.17 runtime.
