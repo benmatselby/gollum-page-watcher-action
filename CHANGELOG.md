@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.8.0
+
+- Bumped docker image to Go 1.20 runtime.
+- Moved the default branch to `main`, and left `master` running the v1.7.0 version.
+
 ## 1.7.0
 
 - Bumped docker image to Go 1.18 runtime.
