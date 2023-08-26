@@ -2,6 +2,8 @@
 
 ## next
 
+## 1.9.0
+
 - Bumped Go version to Go 1.21.
 
 ## 1.8.0
