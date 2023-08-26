@@ -34,7 +34,7 @@ func TestInvalidPayloadForGetGollumEvent(t *testing.T) {
 		t.Fatal("Expected error and did not find one")
 	}
 
-	if err.Error() != "Unable to understand the JSON defined in GITHUB_EVENT_PATH, cannot carry on" {
+	if err.Error() != "unable to understand the JSON defined in GITHUB_EVENT_PATH, cannot carry on" {
 		t.Fatal("Expected an error")
 	}
 }
@@ -50,7 +50,7 @@ func TestMissingPayloadForGetGollumEvent(t *testing.T) {
 		t.Fatal("Expected error and did not find one")
 	}
 
-	if err.Error() != "Unable to read the file defined GITHUB_EVENT_PATH, cannot carry on" {
+	if err.Error() != "unable to read the file defined GITHUB_EVENT_PATH, cannot carry on" {
 		t.Fatal("Expected an error")
 	}
 }

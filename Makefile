@@ -12,13 +12,9 @@ install: ## Install the local dependencies
 	go install github.com/golang/mock/mockgen@master
 	go get ./...
 
-.PHONY: vet
-vet: ## Vet the code
-	go vet -v ./...
-
 .PHONY: lint
 lint: ## Lint the code
-	golint -set_exit_status $(shell go list ./...)
+	golangci-lint run
 
 .PHONY: build
 build: ## Build the application
@@ -34,4 +30,4 @@ test-cov: test ## Run the unit tests with coverage
 	go tool cover -html=coverage.out
 
 .PHONY: all ## Run everything
-all: install vet lint build test
+all: install lint build test
