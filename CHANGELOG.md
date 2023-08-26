@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## next
+
+- Bumped Go version to Go 1.21.
+
 ## 1.8.0
 
 - Bumped docker image to Go 1.20 runtime.
