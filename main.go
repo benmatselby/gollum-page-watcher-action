@@ -30,7 +30,7 @@ func main() {
 
 	event, err := github.GetGollumEvent(config)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println(err.Error())
 		os.Exit(1)
 	}
 
@@ -42,7 +42,7 @@ func main() {
 	commsStrategy := notifier.Notifier{Strategy: &notifier.Slack{}}
 	err = commsStrategy.Strategy.Send(config, event)
 	if err != nil {
-		fmt.Println(msg)
+		fmt.Println(err.Error())
 		os.Exit(1)
 	}
 }
