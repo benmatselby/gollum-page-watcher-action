@@ -3,7 +3,7 @@ package github
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"os"
 	"regexp"
 
 	"github.com/benmatselby/gollum-page-watcher-action/config"
@@ -39,14 +39,14 @@ type GollumEvent struct {
 
 // GetGollumEvent will unmarshal the JSON we receive from GitHub
 func GetGollumEvent(config config.Config) (*GollumEvent, error) {
-	file, err := ioutil.ReadFile(config.GitHubEventPath)
+	file, err := os.ReadFile(config.GitHubEventPath)
 	if err != nil {
-		return nil, fmt.Errorf("Unable to read the file defined GITHUB_EVENT_PATH, cannot carry on")
+		return nil, fmt.Errorf("unable to read the file defined GITHUB_EVENT_PATH, cannot carry on")
 	}
 
 	var gollum GollumEvent
-	if err := json.Unmarshal([]byte(file), &gollum); err != nil {
-		return nil, fmt.Errorf("Unable to understand the JSON defined in GITHUB_EVENT_PATH, cannot carry on")
+	if err := json.Unmarshal(file, &gollum); err != nil {
+		return nil, fmt.Errorf("unable to understand the JSON defined in GITHUB_EVENT_PATH, cannot carry on")
 	}
 
 	var watching = regexp.MustCompile(config.PagesToWatch)

@@ -24,7 +24,7 @@ func (s *Slack) Send(config config.Config, event *github.GollumEvent) error {
 		Text:       content,
 		AuthorName: event.Sender.Login,
 		AuthorIcon: event.Sender.AvatarURL,
-		Footer: fmt.Sprintf("<%s|%s>", event.Repo.URL, event.Repo.FullName),
+		Footer:     fmt.Sprintf("<%s|%s>", event.Repo.URL, event.Repo.FullName),
 	}}
 
 	msg := &slack.WebhookMessage{
