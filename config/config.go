@@ -9,6 +9,9 @@ type Config struct {
 	// GitHubEventPath is the file path to where the payload JSON file is
 	GitHubEventPath string
 
+	// SlackToken allows us to bypass the need for a webhook
+	SlackToken string
+
 	// SlackWebhook is the destination of the Slack API call
 	SlackWebhook string
 
@@ -36,8 +39,8 @@ func (c *Config) IsValid() (bool, string) {
 		return false, "There is no GITHUB_EVENT_PATH defined, cannot carry on."
 	}
 
-	if c.SlackWebhook == "" {
-		return false, "There is no SLACK_WEBHOOK defined, therefore we could not post a message to slack."
+	if c.SlackToken == "" && c.SlackWebhook == "" {
+		return false, "You need to provide either SLACK_WEBHOOK or SLACK_TOKEN, none provided therefore we could not post a message to slack."
 	}
 
 	return true, ""
