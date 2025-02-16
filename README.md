@@ -6,7 +6,10 @@ A GitHub Action to watch for GitHub Wiki Page changes, and then notify a Slack c
 
 ## Secrets
 
+You can provide one of these methods to authenticate yourself.
+
 - `SLACK_WEBHOOK`: The Slack Webhook URL required to post a message to your workspace.
+- `SLACK_TOKEN`: A Slack token that will auth you into the Slack system.
 
 ## Environment Variables
 
