@@ -10,11 +10,13 @@ import (
 )
 
 // main is the handler for the action
-// Environment variables used are defined here: https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables#default-environment-variables
+// Environment variables used are defined here:
+// https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables#default-environment-variables
 func main() {
 	config := config.Config{
 		GitHubEventName: os.Getenv("GITHUB_EVENT_NAME"),
 		GitHubEventPath: os.Getenv("GITHUB_EVENT_PATH"),
+		SlackToken:      os.Getenv("SLACK_TOKEN"),
 		SlackWebhook:    os.Getenv("SLACK_WEBHOOK"),
 		SlackUsername:   os.Getenv("SLACK_USERNAME"),
 		SlackChannel:    os.Getenv("SLACK_CHANNEL"),
@@ -39,7 +41,16 @@ func main() {
 		os.Exit(0)
 	}
 
-	commsStrategy := notifier.Notifier{Strategy: &notifier.Slack{}}
+	var strategy notifier.NotificationStrategy
+	if config.SlackToken != "" {
+		strategy = &notifier.SlackViaToken{}
+	}
+
+	if config.SlackWebhook != "" {
+		strategy = &notifier.Slack{}
+	}
+
+	commsStrategy := notifier.Notifier{Strategy: strategy}
 	err = commsStrategy.Strategy.Send(config, event)
 	if err != nil {
 		fmt.Println(err.Error())

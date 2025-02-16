@@ -9,6 +9,7 @@ func TestIsValid(t *testing.T) {
 		name         string
 		eventName    string
 		eventPath    string
+		slackToken   string
 		slackWebhook string
 		expectedBool bool
 		expectedMsg  string
@@ -17,7 +18,7 @@ func TestIsValid(t *testing.T) {
 		{name: "event name is not gollum", eventName: "push", eventPath: "/tmp/payload.json", slackWebhook: "https://api.slack.com", expectedBool: false, expectedMsg: "GITHUB_EVENT_NAME is not a 'gollum' event, so nothing to do."},
 		{name: "event name is missing", eventName: "", eventPath: "/tmp/payload.json", slackWebhook: "https://api.slack.com", expectedBool: false, expectedMsg: "GITHUB_EVENT_NAME is not a 'gollum' event, so nothing to do."},
 		{name: "event path is missing", eventName: "gollum", eventPath: "", slackWebhook: "https://api.slack.com", expectedBool: false, expectedMsg: "There is no GITHUB_EVENT_PATH defined, cannot carry on."},
-		{name: "slack webhook is missing", eventName: "gollum", eventPath: "/tmp/payload.json", slackWebhook: "", expectedBool: false, expectedMsg: "There is no SLACK_WEBHOOK defined, therefore we could not post a message to slack."},
+		{name: "slack webhook and token are missing", eventName: "gollum", eventPath: "/tmp/payload.json", slackWebhook: "", slackToken: "", expectedBool: false, expectedMsg: "You need to provide either SLACK_WEBHOOK or SLACK_TOKEN, none provided therefore we could not post a message to slack."},
 	}
 
 	for _, tc := range tt {
