@@ -1,6 +1,3 @@
-run:
-  deadline: 5m
-
 # https://golangci-lint.run/usage/linters/
 linters:
   disable-all: true
