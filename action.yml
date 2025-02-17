@@ -8,9 +8,12 @@ branding:
   icon: "book-open"
   color: "purple"
 inputs:
+  slack_token:
+    description: "The Slack Token required to post a message to your workspace."
+    required: false
   slack_webhook:
     description: "The Slack Webhook URL required to post a message to your workspace."
-    required: true
+    required: false
   slack_username:
     description: "The Slack username if you want to define it, otherwise it will be what you have defined in Slack."
     required: false
