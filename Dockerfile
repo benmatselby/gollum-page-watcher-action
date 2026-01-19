@@ -1,4 +1,4 @@
-FROM golang:1.25.5-alpine
+FROM golang:1.26rc2-alpine
 LABEL maintainer="Ben Selby <benmatselby@gmail.com>"
 
 RUN apk add --no-cache \
