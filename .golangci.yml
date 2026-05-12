@@ -33,6 +33,11 @@ linters:
       - third_party$
       - builtin$
       - examples$
+    rules:
+      - path: _test\.go
+        linters:
+          - dupl
+          - goconst
 formatters:
   enable:
     - gofmt
