@@ -1,5 +1,13 @@
 package config
 
+const (
+	// GollumEvent is the GitHub event name for wiki page changes
+	GollumEvent = "gollum"
+
+	// ErrNotGollumEvent is the message returned when the event is not a gollum event
+	ErrNotGollumEvent = "GITHUB_EVENT_NAME is not a 'gollum' event, so nothing to do."
+)
+
 // Config looks everything coming into the action
 // See https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables#default-environment-variables
 type Config struct {
@@ -31,8 +39,8 @@ type Config struct {
 
 // IsValid will provide insight unto whether we are in an acceptable state
 func (c *Config) IsValid() (bool, string) {
-	if c.GitHubEventName != "gollum" {
-		return false, "GITHUB_EVENT_NAME is not a 'gollum' event, so nothing to do."
+	if c.GitHubEventName != GollumEvent {
+		return false, ErrNotGollumEvent
 	}
 
 	if c.GitHubEventPath == "" {
