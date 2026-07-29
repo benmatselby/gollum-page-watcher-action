@@ -4,7 +4,9 @@ updates:
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
-      interval: 'weekly'
+      interval: 'monthly'
+    cooldown:
+      default-days: 7
     commit-message:
       prefix: 'GHA'
 
@@ -12,7 +14,9 @@ updates:
   - package-ecosystem: 'docker'
     directory: '/'
     schedule:
-      interval: 'weekly'
+      interval: 'monthly'
+    cooldown:
+      default-days: 7
     commit-message:
       prefix: 'docker'
 
@@ -20,7 +24,9 @@ updates:
   - package-ecosystem: 'gomod'
     directory: '/'
     schedule:
-      interval: 'daily'
+      interval: 'monthly'
+    cooldown:
+      default-days: 7
     commit-message:
       prefix: 'gomod'
 
@@ -28,7 +34,9 @@ updates:
   - package-ecosystem: 'composer'
     directory: '/'
     schedule:
-      interval: 'weekly'
+      interval: 'monthly'
+    cooldown:
+      default-days: 7
     commit-message:
       prefix: 'php'
     groups:
@@ -39,7 +47,9 @@ updates:
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      interval: 'weekly'
+      interval: 'monthly'
+    cooldown:
+      default-days: 7
     commit-message:
       prefix: 'npm'
     groups:
