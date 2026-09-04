@@ -2,9 +2,6 @@ name: Go
 on: [push, pull_request]
 jobs:
   build:
-    strategy:
-      matrix:
-        go-version: [1.26.x]
     runs-on: ubuntu-latest
     name: Build
     steps:
