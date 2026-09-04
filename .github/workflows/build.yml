@@ -8,14 +8,15 @@ jobs:
     runs-on: ubuntu-latest
     name: Build
     steps:
-      - name: Set up Go
-        uses: actions/setup-go@v7
-        with:
-          go-version: ${{ matrix.go-version }}
-        id: go
-
-      - name: Check out code into the Go module directory
+      - name: Check out code
         uses: actions/checkout@v7
+
+      - name: Set up Go
+        uses: actions/setup-go@v7.0.0
+        with:
+          go-version-file: "go.mod"
+          cache: true
+        id: go
 
       - name: Get dependencies
         run: |
