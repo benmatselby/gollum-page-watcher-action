@@ -1,6 +1,6 @@
 module github.com/benmatselby/gollum-page-watcher-action
 
-go 1.26
+go 1.27
 
 require github.com/slack-go/slack v0.27.0
 
